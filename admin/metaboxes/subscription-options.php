@@ -63,11 +63,11 @@
 			$scripts->add(OPANDA_BIZPANDA_URL . '/assets/admin/js/libs/json2.js');
 
 			if( OPanda_Items::isCurrentPremium() ) {
-				$scripts->add(BIZPANDA_EMAIL_LOCKER_URL . '/admin/assets/js/custom-fields.010000.js');
+				$scripts->add(BIZPANDA_EMAIL_LOCKER_URL . '/admin/assets/js/custom-fields.js');
 			}
 
-			$styles->add(BIZPANDA_EMAIL_LOCKER_URL . '/admin/assets/css/subscription-options.010000.css');
-			$scripts->add(BIZPANDA_EMAIL_LOCKER_URL . '/admin/assets/js/subscription-options.010000.js');
+			$styles->add(BIZPANDA_EMAIL_LOCKER_URL . '/admin/assets/css/subscription-options.css');
+			$scripts->add(BIZPANDA_EMAIL_LOCKER_URL . '/admin/assets/js/subscription-options.js');
 
 			do_action('opanda_subscription_options_assets', $scripts, $styles);
 		}
@@ -234,9 +234,18 @@
 					'way' => 'buttons',
 					'name' => 'form_type',
 					'data' => array(
-						array('email-form', '<i class="fa fa-envelope-o"></i>' . __('Email Only', 'bizpanda-email-locker')),
-						array('name-email-form', '<i class="fa fa-user"></i>' . __('Name & Email', 'bizpanda-email-locker')),
-						array('custom-form', '<i class="fa fa-puzzle-piece"></i>' . __('Custom Form', 'bizpanda-email-locker'))
+						array(
+							'email-form',
+							'<i class="fa fa-envelope-o"></i>' . __('Email Only', 'bizpanda-email-locker')
+						),
+						array(
+							'name-email-form',
+							'<i class="fa fa-user"></i>' . __('Name & Email', 'bizpanda-email-locker')
+						),
+						array(
+							'custom-form',
+							'<i class="fa fa-puzzle-piece"></i>' . __('Custom Form', 'bizpanda-email-locker')
+						)
 					),
 					'title' => __('Form Fields', 'bizpanda-email-locker'),
 					'hint' => __('Choose which fields the user has to fill to unlock your content.', 'bizpanda-email-locker'),
@@ -249,8 +258,14 @@
 					'way' => 'buttons',
 					'name' => 'form_type',
 					'data' => array(
-						array('email-form', '<i class="fa fa-envelope-o"></i>' . __('Email Only', 'bizpanda-email-locker')),
-						array('name-email-form', '<i class="fa fa-user"></i>' . __('Name & Email', 'bizpanda-email-locker')),
+						array(
+							'email-form',
+							'<i class="fa fa-envelope-o"></i>' . __('Email Only', 'bizpanda-email-locker')
+						),
+						array(
+							'name-email-form',
+							'<i class="fa fa-user"></i>' . __('Name & Email', 'bizpanda-email-locker')
+						),
 						array(
 							'custom-form',
 							'<i class="fa fa-puzzle-piece"></i>' . __('Custom Form', 'bizpanda-email-locker'),
@@ -440,8 +455,9 @@
 		public function showCustomFieldsEditor()
 		{
 			$info = OPanda_SubscriptionServices::getCurrentServiceInfo();
-			if( $info['name'] == 'database' )
+			if( $info['name'] == 'database' ) {
 				$info['title'] = __('Database', 'bizpanda-email-locker');
+			}
 
 			$customFieldsNotice = sprintf(__('Choose how this field will work. Map it to one of custom fields in %s or use it as a helper element to decorate your form.', 'bizpanda-email-locker'), $info['title']);
 
